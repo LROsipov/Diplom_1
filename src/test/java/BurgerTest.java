@@ -77,5 +77,37 @@ public class BurgerTest {
 
         assertEquals(expectedReceipt, burger.getReceipt());
     }
+    @Test
+    public void testMoveIngredient() {
+        burger.moveIngredient(0, 1);
+
+        String expectedReceipt = String.format(
+                "(==== step ====)%n" +
+                        "= filling cutlet =%n" +
+                        "= sauce hot =%n" +
+                        "(==== step ====)%n" +
+                        "%n" +
+                        "Price: 7,000000%n");
+
+        assertEquals(expectedReceipt, burger.getReceipt());
+    }
+
+    @Test
+    public void testAddIngredient() {
+        burger.addIngredient(mockSauce);
+        burger.addIngredient(mockFilling);
+
+        String expectedReceipt = String.format(
+                "(==== step ====)%n" +
+                        "= sauce hot =%n" +
+                        "= filling cutlet =%n" +
+                        "= sauce hot =%n" +
+                        "= filling cutlet =%n" +
+                        "(==== step ====)%n" +
+                        "%n" +
+                        "Price: 12,000000%n");
+
+        assertEquals(expectedReceipt, burger.getReceipt());
+    }
 
 }
